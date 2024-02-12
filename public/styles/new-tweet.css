@@ -1,0 +1,39 @@
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+section form {
+  width: 100%
+}
+
+main section textarea {
+  resize: none;
+  background-color: #f4f1ec;
+  border: none;
+  border-bottom: 4px solid black ;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+main section div {
+  display: flex;
+  flex-direction: row;
+  font-family: "Bungee", sans-serif;
+  width: 100%;
+}
+
+
+main section div button {
+  background-color: #4056a1;
+  color: #FFFFFF;
+  justify-content: flex-start;
+  margin-right: 80%;
+}
+main section div output {
+  justify-content: flex-end;
+}
+

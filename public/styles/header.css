@@ -1,0 +1,11 @@
+header.header-head {
+  display: flex;
+  height: 640px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #df9d00;
+  background-image: url("../images/asfalt-light.png");
+}
