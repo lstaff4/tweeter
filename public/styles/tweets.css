@@ -11,15 +11,21 @@ article:hover {
 
 article header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* background-color: #FFFFFF; */
 }
 
+article header img {
+  width: 50px;
+  margin: 1%
+}
+
 span.tweeter-name {
+  font-family: 'Source Sans 3', 'sans-serif';
   display: flex;
   justify-content: flex-start;
-  margin-left: 6%;
-  margin-top: 2%;
+  margin-left: 4%;
+  margin-top: 3%;
 }
 
 span.tweeterat {
@@ -27,6 +33,7 @@ span.tweeterat {
   justify-content: flex-end;
   color: #C3ABFF;
   margin-right: 5%;
+  margin-top: 3%;
 }
 
 span.tweet-text {
