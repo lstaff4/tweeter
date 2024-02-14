@@ -3,6 +3,7 @@ article {
   margin-top: 40px;
   flex-direction: column;
   border: 4px solid #000000;
+  margin-bottom: 40px;
 }
 
 article:hover {
@@ -38,6 +39,7 @@ span.tweeterat {
 
 span.tweet-text {
   margin-left: 5%;
+  margin-right: 5%;
 }
 
 article footer {
