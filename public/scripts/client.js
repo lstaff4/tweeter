@@ -5,7 +5,15 @@
  */
 
 // Fake data taken from initial-tweets.json
+
+
 $(document).ready(function(){
+  
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
 
   const spaceNormalizer = function(string) {
     let returnString = ''
@@ -24,46 +32,25 @@ $(document).ready(function(){
     event.preventDefault();
 
     if ((serializedTweet.length - 5) <= 0) {
-      alert("Your tweet is too short.");
+      $(".error-message").text("Your tweet was too short!");
       return;
     }
 
     if ((spaceNormalizer(serializedTweet).length - 5)  > 140) {
-      alert(`Your tweet is too long.`)
+      $(".error-message").text("Your tweet was too long!");
       return;
     }
 
     $.post("/tweets", serializedTweet, function(data) {
-      alert("Serialized tweet received successfully");
+      $.ajax('/tweets', {method: 'GET'})
+      .then(function (loadedTweets) {
+        $(".tweet-container").prepend(createTweetElement(loadedTweets[loadedTweets.length - 1]));
+      });
+      $('#tweet-text').val('');
+      $(".error-message").text(" ");
+
     })
-  })
-
-
-  // const data = [
-  //   {
-  //     "user": {
-  //       "name": "Newton",
-  //       "avatars": "https://i.imgur.com/73hZDYK.png"
-  //       ,
-  //       "handle": "@SirIsaac"
-  //     },
-  //     "content": {
-  //       "text": "If I have seen further it is by standing on the shoulders of giants"
-  //     },
-  //     "created_at": 1461116232227
-  //   },
-  //   {
-  //     "user": {
-  //       "name": "Descartes",
-  //       "avatars": "https://i.imgur.com/nlhLi3I.png",
-  //       "handle": "@rd" },
-  //     "content": {
-  //       "text": "Je pense , donc je suis"
-  //     },
-  //     "created_at": 1461113959088
-  //   }
-  // ]
-  
+  })  
   
   const createTweetElement = function(tweet) {
     let $tweet = ` 
@@ -75,7 +62,7 @@ $(document).ready(function(){
         </div>
         <span class="tweeterat">${tweet.user.handle}</span>
       </header>
-      <span class="tweet-text">${tweet.content.text}</span>
+      <span class="tweet-text">${escape(tweet.content.text)}</span>
       <footer>
         <span class="time-since-tweet">${timeago.format(tweet.created_at)}</span>
         <span class="tweet-interacts">
@@ -96,7 +83,7 @@ $(document).ready(function(){
     for (let post of tweets) {
       // calls createTweetElement for each tweet
       let $newTweet = createTweetElement(post);
-      $(".tweet-container").append($newTweet);
+      $(".tweet-container").prepend($newTweet);
       // takes return value and appends it to the tweets container
     } 
   

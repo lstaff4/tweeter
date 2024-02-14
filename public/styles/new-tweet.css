@@ -37,3 +37,7 @@ main section div output {
   justify-content: flex-end;
 }
 
+span.error-message {
+  display: flex;
+  color: #FF0000;
+}
