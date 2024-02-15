@@ -8,4 +8,26 @@ header.header-head {
   color: #ffffff;
   background-color: #df9d00;
   background-image: url("../images/asfalt-light.png");
+  z-index: -1;
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header-head {
+    justify-content: flex-start;
+    flex: 0.8;
+    top: 0;
+    position: sticky;
+  }
+
+  main.container {
+    flex: 1;
+    margin-top: 100px;
+
+    margin-right: 20px;
+  }
 }

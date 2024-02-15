@@ -4,21 +4,35 @@ nav {
   height: 120px;
   color: #ffffff;
   background-color: #4056a1;
+  
 }
+
 nav span {
   font-family: "Bungee", sans-serif;
   margin-left: 1.5em;
   margin-right: 1.5em;
 }
 
+span.tweeter {
+  display: flex;
+  margin-top: 1em;
+}
+
 nav .new-tweet {
   display: flex;
   font-family: "Source Sans 3", sans-serif;
   justify-content: flex-end;
+  margin-bottom: 0em;
 }
 
 nav .fa-solid {
   display: flex;
   justify-content: flex-end;
   margin-right: 4.5em;
+}
+
+@media only screen and (max-width: 1024px) {
+  nav {
+    background-color: transparent;
+  }
 }

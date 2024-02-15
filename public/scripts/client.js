@@ -7,28 +7,31 @@
 // Fake data taken from initial-tweets.json
 
 
-$(document).ready(function(){
-  
-  const escape = function (str) {
+$(document).ready(function() {
+
+  const escape = function(str) {
+    // used to stop users from inputting code from the textarea.
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
   const spaceNormalizer = function(string) {
-    let returnString = ''
-    for (i = 0; i < string.length; i++) {
+    //converts serialized spaces into regular spaces, for measurement. Sorry to anyone who wanted to input %20 into their tweets.
+    let returnString = '';
+    for (let i = 0; i < string.length; i++) {
       if (string[i] === '%' && string[i + 1] === '2' && string[i + 2] === '0') {
-        returnString += ' '
+        returnString += ' ';
         i += 3;
       }
-      returnString += string[i]
+      returnString += string[i];
     }
     return returnString;
-  }
+  };
 
   $("#compose-new-tweet").on("submit", function() {
-    let serializedTweet = ( $( this ).serialize() );
+    // this function composes our submitted text into a tweet.
+    let serializedTweet = ($(this).serialize());
     event.preventDefault();
 
     if ((serializedTweet.length - 5) <= 0) {
@@ -43,16 +46,19 @@ $(document).ready(function(){
 
     $.post("/tweets", serializedTweet, function(data) {
       $.ajax('/tweets', {method: 'GET'})
-      .then(function (loadedTweets) {
-        $(".tweet-container").prepend(createTweetElement(loadedTweets[loadedTweets.length - 1]));
-      });
+        .then(function (loadedTweets) {
+          $(".tweet-container").prepend(createTweetElement(loadedTweets[loadedTweets.length - 1]));
+        // this above line seems like a lot, but it's the same way we load all of the tweets,
+        // except we're only loading the last element in the array instead of all of them.
+        });
       $('#tweet-text').val('');
       $(".error-message").text(" ");
 
-    })
-  })  
+    });
+  });
   
   const createTweetElement = function(tweet) {
+    //creates a tweet element from a given object.
     let $tweet = ` 
     <article class="tweet">
       <header>
@@ -72,7 +78,7 @@ $(document).ready(function(){
         </span> 
       </footer>
     </article>
-    `
+    `;
   
     return $tweet;
   };
@@ -85,17 +91,18 @@ $(document).ready(function(){
       let $newTweet = createTweetElement(post);
       $(".tweet-container").prepend($newTweet);
       // takes return value and appends it to the tweets container
-    } 
+    }
   
-  };  
+  };
 
   const loadtweets = function() {
+    //grabs all tweets and calls renderTweets on them.
     $.ajax('/tweets', {method: 'GET'})
-    .then(function (loadedTweets) {
-      renderTweets(loadedTweets);
-    });
+      .then(function(loadedTweets) {
+        renderTweets(loadedTweets);
+      });
   };
 
   loadtweets();
 
-})
+});
