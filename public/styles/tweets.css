@@ -7,7 +7,7 @@ article {
 }
 
 article:hover {
-  box-shadow: 0 0 11px rgba(33,33,200,.8);
+  box-shadow: 10px 10px 11px rgba(33,33,100,.5);
 }
 
 article header {
@@ -19,7 +19,8 @@ article header {
 article header img {
   width: 50px;
   height: 50px;
-  margin: 1%
+  margin: 1%;
+  margin-left: 5%;
 }
 
 span.tweeter-name {
@@ -51,6 +52,8 @@ article footer {
 }
 
 span.time-since-tweet {
+  display: flex;
+  margin-top: 8px;
   margin-left: 5%;
 }
 
@@ -66,5 +69,6 @@ span.tweet-interacts i {
 }
 
 span.tweet-interacts i:hover {
-  color: #C99934
+  color: #C99934;
+  cursor: pointer;
 }

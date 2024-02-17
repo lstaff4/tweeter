@@ -50,10 +50,16 @@ $(document).ready(function() {
           $(".tweet-container").prepend(createTweetElement(loadedTweets[loadedTweets.length - 1]));
         // this above line seems like a lot, but it's the same way we load all of the tweets,
         // except we're only loading the last element in the array instead of all of them.
+        }).catch(function(err){
+          console.log(err);
         });
       $('#tweet-text').val('');
+      const output = $('output');
+      output.text(140);  
       $(".error-message").text(" ");
 
+    }).catch(function(err){
+      console.log(err);
     });
   });
   
@@ -100,9 +106,10 @@ $(document).ready(function() {
     $.ajax('/tweets', {method: 'GET'})
       .then(function(loadedTweets) {
         renderTweets(loadedTweets);
+      }).catch(function(err){
+        console.log(err);
       });
   };
-
   loadtweets();
 
 });
